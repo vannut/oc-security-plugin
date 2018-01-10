@@ -17,4 +17,8 @@ class HttpsOnlyCookies extends CheckBase implements CheckInterface
     {
         return config('session.secure');
     }
+    public function tags() : array
+    {
+        return ['config', 'session'];
+    }
 }

@@ -20,4 +20,9 @@ class UsingPublicFolder extends CheckBase implements CheckInterface
         $publicFolder = base_path('public');
         return is_dir($publicFolder);
     }
+
+    public function tags() : array
+    {
+        return ['fs'];
+    }
 }

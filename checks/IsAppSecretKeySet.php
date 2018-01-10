@@ -20,4 +20,8 @@ class IsAppSecretKeySet extends CheckBase implements CheckInterface
         }
         return true;
     }
+    public function tags() : array
+    {
+        return ['config'];
+    }
 }

@@ -17,4 +17,8 @@ class IsCSRFProtectionEnabled extends CheckBase implements CheckInterface
     {
         return config('cms.enableCsrfProtection');
     }
+    public function tags() : array
+    {
+        return ['config'];
+    }
 }

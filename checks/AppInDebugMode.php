@@ -21,4 +21,9 @@ class AppInDebugMode extends CheckBase implements CheckInterface
         }
         return false;
     }
+
+    public function tags() : array
+    {
+        return ['config'];
+    }
 }

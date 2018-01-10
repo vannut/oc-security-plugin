@@ -28,8 +28,9 @@ class ComposerWithoutDevDep extends CheckBase implements CheckInterface
             return false;
         };
         return true;
-
-
-
+    }
+    public function tags() : array
+    {
+        return ['fs'];
     }
 }

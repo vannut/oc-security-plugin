@@ -17,4 +17,8 @@ class DoWeEncryptSessionData extends CheckBase implements CheckInterface
         $encrypt = config('session.encrypt');
         return $encrypt;
     }
+    public function tags() : array
+    {
+        return ['config', 'session'];
+    }
 }

@@ -15,9 +15,9 @@ interface CheckInterface
     /**
      * which group does this check belong to?
      *
-     * @return string
+     * @return array
      */
-    // public function group();
+    public function tags() :array;
 
     /**
      * Provide details about this check

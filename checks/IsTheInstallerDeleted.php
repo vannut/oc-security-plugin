@@ -21,4 +21,8 @@ class IsTheInstallerDeleted extends CheckBase implements CheckInterface
         }
         return true;
     }
+    public function tags() : array
+    {
+        return ['fs'];
+    }
 }

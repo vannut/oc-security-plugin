@@ -16,4 +16,9 @@ class AreWeUseingDotEnv extends CheckBase implements CheckInterface
     {
         return is_file(base_path('.env'));
     }
+
+    public function tags() : array
+    {
+        return ['config', 'fs'];
+    }
 }

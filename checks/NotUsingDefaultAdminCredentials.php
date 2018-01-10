@@ -32,4 +32,8 @@ class NotUsingDefaultAdminCredentials extends CheckBase implements CheckInterfac
         }
         return true;
     }
+    public function tags() : array
+    {
+        return ['credentials'];
+    }
 }
