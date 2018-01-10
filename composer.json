@@ -1,0 +1,17 @@
+{
+    "name": "vannut/oc-security-plugin",
+    "description": "Security Layer for OctoberCMS",
+    "homepage": "https://vannut.nl",
+    "keywords": ["october", "cms", "octobercms", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Richard Verbruggen",
+            "email": "support@vannut.nl"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
