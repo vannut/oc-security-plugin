@@ -38,8 +38,9 @@ class AnomalyDetected extends Notification //implements ShouldQueue
             ->content('['.$notifiable->accountName.'] We detected an anomoly')
             ->attachment(function ($attachment) use ($changes) {
                 $attachment->fields([
-                    'Files changed :lower_left_ballpoint_pen:' => $changes['changed']->count(),
-                    'New files :sparkles:' => $changes['newFiles']->count(),
+                    'Files changed' => $changes['changed']->count(),
+                    'New files' => $changes['newFiles']->count(),
+                    'Deleted files' => $changes['deleted']->count(),
                     // 'No change' => $changes['noChange']->count(),
                     // 'elapsed time' => round($changes['elapsedTime'], 2)."s"
                 ]);

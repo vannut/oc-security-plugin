@@ -22,20 +22,20 @@ class Plugin extends \System\Classes\PluginBase
     {
         return [
             'secops' => [
-                'label'       => 'vannut.security::lang.backend.menu.main_item',
+                'label'       => 'vannut.security::lang.menu.main_item',
                 'url'         => Backend::url('vannut/security'),
                 'icon'        => 'icon-schield',
                 'permissions' => ['vannut.security.*'],
                 'order'       => 500,
                 'sideMenu' => [
                     'filechanges' => [
-                        'label'       => 'vannut.booot::lang.backend.menu.filechanges',
+                        'label'       => 'vannut.booot::lang.menu.filechanges',
                         'icon'        => 'icon-document',
                         'url'         => Backend::url('vannut/security/filechanges'),
                         'permissions' => ['vannut.security.manage']
                     ],
                     'headers' => [
-                        'label'       => 'vannut.booot::lang.backend.menu.headers',
+                        'label'       => 'vannut.booot::lang.menu.headers',
                         'icon'        => 'icon-header',
                         'url'         => Backend::url('vannut/security/headers'),
                         'permissions' => ['vannut.security.manage']

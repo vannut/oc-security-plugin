@@ -6,7 +6,7 @@ return [
         'description'       => 'Adds a security layer on top of OctoberCMS',
     ],
     'menu'          => [
-        'main_item'         => 'SecOps',
+        'main_item'         => 'Security',
         'filechanges'       => 'FileChanges',
         'headers'           => 'Headers',
     ],

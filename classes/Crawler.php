@@ -4,6 +4,8 @@ namespace Vannut\Security\Classes;
 
 use Vannut\Security\Exceptions\ConfigException;
 use Vannut\Security\Classes\Timer;
+use Vannut\Security\Models\FsCrawlerRun;
+use Vannut\Security\Models\FsCrawlerAnomaly;
 use Vannut\Security\Notifications\BaseLineCreated;
 use Vannut\Security\Notifications\AnomalyDetected;
 use Symfony\Component\Finder\Finder;
@@ -34,6 +36,7 @@ class Crawler
 
             // for debug purposes just using the crawler
             // directory, normally you would use: base_path()
+            // testing: __DIR__
             'base_dir' => __DIR__,
 
         ];
@@ -140,7 +143,10 @@ class Crawler
         // baseline ophalen
         $baseline = DB::table('vannut_secops_baseline')->select(['path','hash', 'path_hash'])
             ->get()
-            ->keyBy('path_hash');
+            ->keyBy('path_hash')
+            ->transform(function ($item) {
+                return (array) $item;
+            });
 
         $currentFiles = $this->getCurrentFilesWithHashes();
 
@@ -150,47 +156,78 @@ class Crawler
             if (!$baseline->has($item['path_hash'])) {
                 $status = 'file-added';
             // the content hashes are not the same...
-            } elseif ($baseline->get($item['path_hash'])->hash !== $item['hash']) {
+            } elseif ($baseline->get($item['path_hash'])['hash']     !== $item['hash']) {
                 $status = 'content-changed';
             } else {
                 $status = 'no-change';
             }
-            $item['status'] = $status;
-            return $item;
-        });
+            $item['type'] = $status;
 
-        // what about deletions?
-        // TODO:
+            return (array) $item;
+        });
 
         // split out the different nof statusses
         $changed = $currentFiles->filter(function ($item) {
-            return $item['status'] == 'content-changed';
+            return $item['type'] == 'content-changed';
         });
         $noChange = $currentFiles->filter(function ($item) {
-            return $item['status'] == 'no-change';
+            return $item['type'] == 'no-change';
         });
         $newFile = $currentFiles->filter(function ($item) {
-            return $item['status'] == 'file-added';
+            return $item['type'] == 'file-added';
         });
+
+        // What about deletions?
+        $deleted = $baseline->reject(function ($item) use ($currentFiles) {
+            return $currentFiles->has($item['path_hash']);
+        })
+        ->transform(function ($item) {
+            $item['type'] = 'file-deleted';
+            return $item;
+        });
+
 
         $timer->stop();
 
-        if ($newFile->count() >0 || $changed->count() >0) {
+        // Sent notifications
+        if ($newFile->count() >0 || $changed->count() >0 || $deleted->count() >0) {
             $this->notifier->notify(new AnomalyDetected([
                 'changed' => $changed,
                 'newFiles' => $newFile,
                 'noChange' => $noChange,
+                'deleted' => $deleted,
                 'elapsedTime' => $timer->diff()
             ]));
         }
 
-        // TODO: write this crawler run into the logs.
+
+        // Creating a crawler Run
+        $run = FsCrawlerRun::create([
+            'started_at' => $timer->startedAtCarbon(),
+            'elapsed_ms' => 0
+        ]);
+
+        // Store changes
+        $storable = $currentFiles->merge($deleted)->reject(function ($item) {
+            return $item['type'] === 'no-change';
+        })
+        ->transform(function ($item) use ($run) {
+            unset($item['hash']);
+            unset($item['path_hash']);
+            $item['run_id'] = $run->id;
+
+            return $item;
+        });
+
+        $an = FsCrawlerAnomaly::insert($storable->values()->toArray());
+
 
         // debugging...
         echo "Done in {$timer->diff()} seconds<br>";
         echo "<pre>";
         echo 'Changed: '; print_r($changed->count()); echo "<br>";
         echo 'NewFile: '; print_r($newFile->count()); echo "<br>";
+        echo 'Deleted: '; print_r($deleted->count()); echo "<br>";
         echo 'no change: '; print_r($noChange->count()); echo "<br>";
         print_r($currentFiles->toArray());
 

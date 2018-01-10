@@ -2,3 +2,7 @@
 1.0.2:
   - Adding the baseline
   - baseline_table.php
+1.0.3:
+  - FS Crawler run and anomaly
+  - crawler_run_table.php
+  - crawler_anomaly.php
