@@ -24,7 +24,7 @@ class Plugin extends \System\Classes\PluginBase
             'secops' => [
                 'label'       => 'vannut.security::lang.menu.main_item',
                 'url'         => Backend::url('vannut/security'),
-                'icon'        => 'icon-schield',
+                'icon'        => 'icon-user-secret',
                 'permissions' => ['vannut.security.*'],
                 'order'       => 500,
                 'sideMenu' => [

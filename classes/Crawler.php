@@ -204,7 +204,7 @@ class Crawler
         // Creating a crawler Run
         $run = FsCrawlerRun::create([
             'started_at' => $timer->startedAtCarbon(),
-            'elapsed_ms' => 0
+            'elapsed_ms' => $timer->diffMs()
         ]);
 
         // Store changes
