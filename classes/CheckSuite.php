@@ -2,6 +2,7 @@
 
 namespace Vannut\Security\Classes;
 
+use Vannut\Security\Exceptions\CheckDoesNotExistException;
 /**
  * This Class holds everything logic related to running
  * the different checks on the OctoberCMS system.
@@ -18,12 +19,50 @@ class CheckSuite
      */
     public function availableChecks()
     {
-        return [
-            Vannut\Security\Checks\AppInDebugMode::class,
-            Vannut\Security\Checks\IsAppSecretKeySet::class,
-            Vannut\Security\Checks\UsingDefaultCredentials::class,
-            Vannut\Security\Checks\UsingPublicFolder::class,
-            Vannut\Security\Checks\ComposerWithoutDevDep::class,
-        ];
+        return collect([
+            \Vannut\Security\Checks\AppInDebugMode::class,
+            \Vannut\Security\Checks\IsAppSecretKeySet::class,
+            \Vannut\Security\Checks\NotUsingDefaultAdminCredentials::class,
+            \Vannut\Security\Checks\UsingPublicFolder::class,
+            \Vannut\Security\Checks\ComposerWithoutDevDep::class,
+            \Vannut\Security\Checks\IsTheInstallerDeleted::class,
+            \Vannut\Security\Checks\IsCSRFProtectionEnabled::class,
+            \Vannut\Security\Checks\AreWeUseingDotEnv::class,
+            \Vannut\Security\Checks\DoWeEncryptSessionData::class,
+            \Vannut\Security\Checks\DefaultCookieName::class,
+            \Vannut\Security\Checks\HttpsOnlyCookies::class,
+
+
+        ]);
     }
+
+    public function run($check)
+    {
+        $classname = '\\Vannut\\Security\\Checks\\'.$check;
+        if (!class_exists($classname)) {
+            throw new CheckDoesNotExistException("We cannot find the check named {$check}", 404);
+        }
+
+        $check = new $classname;
+        return $check->run();
+    }
+
+    public function runAll()
+    {
+        $result = $this->availableChecks()
+        ->transform(function ($item) {
+            $check = new $item;
+            return [
+                'identifier' => (new \ReflectionClass($check))->getShortName(),
+                'result' => $check->doesItPass()
+            ];
+        })
+        ->keyBy('identifier')
+        ->transform(function ($item) {
+            return $item['result'];
+        });
+        return $result->toArray();
+    }
+
+    //
 }

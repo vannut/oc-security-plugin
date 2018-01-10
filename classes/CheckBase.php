@@ -1,6 +1,6 @@
 <?php
 
-namespace Vannut\Security\Checks;
+namespace Vannut\Security\Classes;
 
 /**
  * This BaseCheck class is the basis for all the
@@ -9,7 +9,7 @@ namespace Vannut\Security\Checks;
  *
  * @author Richard <support@vannut.nl>
  */
-class BaseCheck
+class CheckBase
 {
     // Nothing here yet
 }

@@ -10,15 +10,15 @@ use Vannut\Security\Classes\CheckInterface;
  *
  * @author Richard <support@vannut.nl>
  */
-class AppInDebugMode extends CheckBase implements CheckInterface
+class DefaultCookieName extends CheckBase implements CheckInterface
 {
 
     public function doesItPass() : bool
     {
-        $debugMode = config('app.debug');
-        if ($debugMode === false) {
-            return true;
+        $cookieName = config('session.cookie');
+        if ($cookieName === 'october_session') {
+            return false;
         }
-        return false;
+        return true;
     }
 }

@@ -3,6 +3,7 @@
 namespace Vannut\Security\Components;
 
 use Vannut\Security\Classes\Crawler;
+use Vannut\Security\Classes\CheckSuite;
 
 /**
  *
@@ -22,9 +23,16 @@ class SecOps extends \Cms\Classes\ComponentBase
 
     public function onRun()
     {
-        $crawler = new Crawler;
-        // dd($crawler->createBaseline());
-        dd($crawler->compareFilesystem());
+        // Crawler
+        // $crawler = new Crawler;
+        // // dd($crawler->createBaseline());
+        // dd($crawler->compareFilesystem());
+
+        // check
+        $cs = new CheckSuite;
+
+        // dd($cs->run('ComposerWithoutDevDep'));
+        dd($cs->runAll());
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vannut\Security\Checks;
+namespace Vannut\Security\Classes;
 
 interface CheckInterface
 {
@@ -9,14 +9,15 @@ interface CheckInterface
      *
      * @return bool
      */
-    public function run();
+    public function doesItPass() : bool;
+
 
     /**
      * which group does this check belong to?
      *
      * @return string
      */
-    public function group();
+    // public function group();
 
     /**
      * Provide details about this check
@@ -24,7 +25,7 @@ interface CheckInterface
      *
      * @return array
      */
-    public function checkDetails();
+    // public function checkDetails();
 
 
 }

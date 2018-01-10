@@ -10,14 +10,11 @@ use Vannut\Security\Classes\CheckInterface;
  *
  * @author Richard <support@vannut.nl>
  */
-class IsAppSecretKeySet extends CheckBase implements CheckInterface
+class DoWeEncryptSessionData extends CheckBase implements CheckInterface
 {
     public function doesItPass() :bool
     {
-        $secret = config('app.key');
-        if ($secret === '' || $secret === 'CHANGE_ME!!!!!!!!!!!!!!!!!!!!!!!') {
-            return false;
-        }
-        return true;
+        $encrypt = config('session.encrypt');
+        return $encrypt;
     }
 }

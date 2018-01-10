@@ -6,16 +6,17 @@ use Vannut\Security\Classes\CheckBase;
 use Vannut\Security\Classes\CheckInterface;
 
 /**
- * Did we change the Secret Key to something random?
+ * Check whether composer was installed w/ or wo/
+ * dev dependencies...
  *
  * @author Richard <support@vannut.nl>
  */
-class IsAppSecretKeySet extends CheckBase implements CheckInterface
+class IsTheInstallerDeleted extends CheckBase implements CheckInterface
 {
     public function doesItPass() :bool
     {
-        $secret = config('app.key');
-        if ($secret === '' || $secret === 'CHANGE_ME!!!!!!!!!!!!!!!!!!!!!!!') {
+        // check for the existence of 'install_files'
+        if (is_dir(base_path('install_files')) || is_file(base_path('install.php'))) {
             return false;
         }
         return true;
