@@ -1,6 +1,7 @@
 {
     "name": "vannut/oc-security-plugin",
     "description": "Security Layer for OctoberCMS",
+    "type": "october-plugin",
     "homepage": "https://vannut.nl",
     "keywords": ["october", "cms", "octobercms", "laravel"],
     "license": "MIT",
