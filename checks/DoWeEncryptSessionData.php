@@ -12,6 +12,12 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class DoWeEncryptSessionData extends CheckBase implements CheckInterface
 {
+    public $title       = 'DoWeEncryptSessionData';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/DoWeEncryptSessionData";
+    public $severity    = 2;
+
     public function doesItPass() :bool
     {
         $encrypt = config('session.encrypt');

@@ -12,6 +12,11 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class IsCSRFProtectionEnabled extends CheckBase implements CheckInterface
 {
+    public $title       = 'IsCSRFProtectionEnabled';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/IsCSRFProtectionEnabled";
+    public $severity    = 4;
 
     public function doesItPass() : bool
     {

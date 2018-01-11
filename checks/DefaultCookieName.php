@@ -12,6 +12,11 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class DefaultCookieName extends CheckBase implements CheckInterface
 {
+    public $title       = 'DefaultCookieName';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/DefaultCookieName";
+    public $severity    = 3;
 
     public function doesItPass() : bool
     {

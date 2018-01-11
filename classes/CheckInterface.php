@@ -19,13 +19,4 @@ interface CheckInterface
      */
     public function tags() :array;
 
-    /**
-     * Provide details about this check
-     * Shoudl contain: 'description', 'more_info_link'
-     *
-     * @return array
-     */
-    // public function checkDetails();
-
-
 }

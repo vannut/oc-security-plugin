@@ -21,23 +21,29 @@ class Plugin extends \System\Classes\PluginBase
     public function registerNavigation()
     {
         return [
-            'secops' => [
+            'security' => [
                 'label'       => 'vannut.security::lang.menu.main_item',
-                'url'         => Backend::url('vannut/security'),
+                'url'         => Backend::url('vannut/security/dashboard'),
                 'icon'        => 'icon-user-secret',
                 'permissions' => ['vannut.security.*'],
                 'order'       => 500,
                 'sideMenu' => [
                     'filechanges' => [
-                        'label'       => 'vannut.booot::lang.menu.filechanges',
-                        'icon'        => 'icon-document',
+                        'label'       => 'vannut.security::lang.menu.filechanges',
+                        'icon'        => 'icon-file-code-o',
                         'url'         => Backend::url('vannut/security/filechanges'),
                         'permissions' => ['vannut.security.manage']
                     ],
                     'headers' => [
-                        'label'       => 'vannut.booot::lang.menu.headers',
+                        'label'       => 'vannut.security::lang.menu.headers',
                         'icon'        => 'icon-header',
                         'url'         => Backend::url('vannut/security/headers'),
+                        'permissions' => ['vannut.security.manage']
+                    ],
+                    'checklist' => [
+                        'label'       => 'vannut.security::lang.menu.checklist',
+                        'icon'        => 'icon-check-circle-o',
+                        'url'         => Backend::url('vannut/security/checklist'),
                         'permissions' => ['vannut.security.manage']
                     ],
 

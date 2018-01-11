@@ -13,6 +13,12 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class ComposerWithoutDevDep extends CheckBase implements CheckInterface
 {
+    public $title       = 'ComposerWithoutDevDep';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/ComposerWithoutDevDep";
+    public $severity    = 3;
+
     public function doesItPass() :bool
     {
         // check for the existence of the vendor/phpunit/phpunit, vendor/fzaninotto/faker

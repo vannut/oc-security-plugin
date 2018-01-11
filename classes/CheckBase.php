@@ -11,5 +11,11 @@ namespace Vannut\Security\Classes;
  */
 class CheckBase
 {
-    // Nothing here yet
+    public $passes;
+    public $severity;
+
+    public function __construct()
+    {
+        $this->passes = $this->doesItPass();
+    }
 }

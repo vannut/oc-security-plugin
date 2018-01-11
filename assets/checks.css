@@ -1,0 +1,27 @@
+.checklist-env {
+    max-width: 40em;
+    /* margin-left:auto; margin-right: auto; */
+}
+.check-env {
+    padding:1rem;
+    background: white;
+    margin-bottom:1rem;
+    position: relative;
+}
+.check-env .check-mark {
+    float:left;
+    margin-right: 1rem;
+}
+.check-env h3 {
+    padding: 0;
+    margin: 0;
+    font-weight: 200;
+}
+.check-severity {
+    color: #606F7B;
+    /* background: #F1F5F8; */
+    background: rgb(249,249,249);
+    opacity: .6;
+    padding: .3rem 1rem;;
+    position: absolute; right:0; top:0;
+}

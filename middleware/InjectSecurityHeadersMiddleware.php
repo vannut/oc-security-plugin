@@ -27,8 +27,8 @@ class InjectSecurityHeadersMiddleware
         $cspHeaderName = 'Content-Security-Policy';
         $csp = [
             "default-src 'self';",
-            "script-src 'self' code.jquery.com;",
-            "img-src 'self'  https://server.arcgisonline.com;",
+            "script-src 'self' code.jquery.com https://www.googletagmanager.com https://www.google-analytics.com  'nonce-123456';",
+            "img-src 'self'  https://server.arcgisonline.com https://booot.be https://booot.vannut.net https://www.google-analytics.com ;",
             "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;",
             "font-src 'self' https://fonts.gstatic.com/;",
             "media-src 'self' https://booot.be;",

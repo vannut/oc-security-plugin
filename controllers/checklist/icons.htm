@@ -1,0 +1,59 @@
+<?php
+    if ($c->passes) {
+        ?>
+        <div class="svg-icon-success is-animated">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.27 90.27">
+                <defs>
+                    <style>
+                        .circle {
+                            fill: #38C172;
+                        }
+                        .circle-check {
+                            fill: none;
+                            stroke: #fff;
+                            stroke-linecap: round;
+                            stroke-miterlimit: 10;
+                            stroke-width: 4px;
+                            -webkit-filter: drop-shadow( 1px 1px 3px #1A4731 );
+                                    filter: drop-shadow( 1px 1px 3px #1A4731 );
+                        }
+                    </style>
+                </defs>
+                <title>icon-success</title>
+                <circle class="circle" cx="45.14" cy="45.14" r="45.14"/>
+                <polyline class="circle-check" points="63.4 28.8 37.93 63.47 24.87 50.52"/>
+            </svg>
+        </div>
+        <?php
+    } else {
+        ?>
+        <div class="svg-icon-error is-animated">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.27 90.27">
+                <defs>
+                    <style>
+                        .circle-2 {
+                            fill: #EF5753;
+                        }
+                        .x {
+                            opacity: .8;
+                        }
+                        .x-single {
+                            fill: #fff;
+                            -webkit-filter: drop-shadow( 1px 1px 3px #621B18 );
+                                    filter: drop-shadow( 1px 1px 3px #621B18 );
+                        }
+                    </style>
+                </defs>
+                <title>icon-error</title>
+                <circle class="circle-2" cx="45.14" cy="45.14" r="45.14"/>
+                <g class="x">
+                <rect class="x-single" x="21.77" y="43.49" width="46.74" height="3.36" transform="translate(-18.72 45.15) rotate(-45)"/>
+                <rect class="x-single" x="43.47" y="21.81" width="3.36" height="46.74" transform="translate(-18.72 45.16) rotate(-45)"/>
+                </g>
+            </svg>
+        </div>
+        <?php
+    }
+
+
+ ?>

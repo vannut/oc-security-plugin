@@ -14,6 +14,12 @@ use Backend\Models\User;
  */
 class NotUsingDefaultAdminCredentials extends CheckBase implements CheckInterface
 {
+    public $title       = 'NotUsingDefaultAdminCredentials';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/NotUsingDefaultAdminCredentials";
+    public $severity    = 5;
+
     private $defaultPassword    = 'admin';
     private $defaultLogin       = 'admin';
 

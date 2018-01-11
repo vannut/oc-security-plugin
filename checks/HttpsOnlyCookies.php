@@ -12,6 +12,11 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class HttpsOnlyCookies extends CheckBase implements CheckInterface
 {
+    public $title       = 'HttpsOnlyCookies';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/HttpsOnlyCookies";
+    public $severity    = 2;
 
     public function doesItPass() : bool
     {

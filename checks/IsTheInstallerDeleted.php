@@ -13,6 +13,12 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class IsTheInstallerDeleted extends CheckBase implements CheckInterface
 {
+    public $title       = 'IsTheInstallerDeleted';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/IsTheInstallerDeleted";
+    public $severity    = 4 ;
+
     public function doesItPass() :bool
     {
         // check for the existence of 'install_files'

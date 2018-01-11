@@ -20,7 +20,7 @@ class CheckSuite
     public function availableChecks()
     {
         return collect([
-            \Vannut\Security\Checks\AppInDebugMode::class,
+            \Vannut\Security\Checks\AppInProductionMode::class,
             \Vannut\Security\Checks\IsAppSecretKeySet::class,
             \Vannut\Security\Checks\NotUsingDefaultAdminCredentials::class,
             \Vannut\Security\Checks\UsingPublicFolder::class,
@@ -31,8 +31,6 @@ class CheckSuite
             \Vannut\Security\Checks\DoWeEncryptSessionData::class,
             \Vannut\Security\Checks\DefaultCookieName::class,
             \Vannut\Security\Checks\HttpsOnlyCookies::class,
-
-
         ]);
     }
 
@@ -63,6 +61,17 @@ class CheckSuite
         });
         return $result->toArray();
     }
+
+    public function checksWithResult()
+    {
+        $checks = $this->availableChecks()
+        ->transform(function ($item) {
+            return new $item;
+        });
+
+        return $checks;
+    }
+
 
     //
 }

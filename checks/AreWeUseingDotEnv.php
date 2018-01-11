@@ -12,6 +12,13 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class AreWeUseingDotEnv extends CheckBase implements CheckInterface
 {
+    public $title       = 'AreWeUseingDotEnv';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/AreWeUseingDotEnv";
+    public $severity    = 2;
+
+
     public function doesItPass() :bool
     {
         return is_file(base_path('.env'));

@@ -12,6 +12,12 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class IsAppSecretKeySet extends CheckBase implements CheckInterface
 {
+    public $title       = 'IsAppSecretKeySet';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/IsAppSecretKeySet";
+    public $severity    = 5;
+
     public function doesItPass() :bool
     {
         $secret = config('app.key');

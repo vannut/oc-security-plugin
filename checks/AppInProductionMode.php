@@ -10,8 +10,14 @@ use Vannut\Security\Classes\CheckInterface;
  *
  * @author Richard <support@vannut.nl>
  */
-class AppInDebugMode extends CheckBase implements CheckInterface
+class AppInProductionMode extends CheckBase implements CheckInterface
 {
+
+    public $title       = "AppInProductionMode";
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/AppInProductionMode";
+    public $severity    = 5;
 
     public function doesItPass() : bool
     {

@@ -1,0 +1,104 @@
+.svg-icon-success,
+.svg-icon-error {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 0;
+  opacity: 0;
+  transform: translate3d(-3000px, 0 , 0);
+}
+
+.svg-icon-error {
+  left: initial;
+  right: 40%;
+  margin: 0;
+}
+
+.svg-icon-success .circle-check {
+  fill: none;
+  fill-opacity: 0;
+  stroke: #fff;
+  stroke-width: 4px;
+  stroke-location: inside;
+  stroke-dasharray: 0 100;
+}
+
+.svg-icon-success.is-animated,
+.svg-icon-error.is-animated {
+  animation-name: bounceInDown;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+
+.svg-icon-success.is-animated .circle-check {
+  animation-name: dasharray;
+  animation-duration: 0.5s;
+  animation-delay: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+.svg-icon-error.is-animated .x-single {
+  animation-name: rotate;
+  animation-duration: 0.5s;
+  animation-delay: 0.3s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  transform-origin: 50% 50%;
+}
+
+/**
+ * Animations
+ */
+
+/**
+ * @source animate.css - bounceInDown
+ */
+@keyframes bounceInDown {
+  from, 60%, 75%, 90%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    transform: translate3d(-10px,0, 0);
+  }
+
+  90% {
+    transform: translate3d(5px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes dasharray {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+
+  100% {
+    stroke-dasharray: 100 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(315deg);
+  }
+}

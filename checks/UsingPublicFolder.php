@@ -15,6 +15,12 @@ use Vannut\Security\Classes\CheckInterface;
  */
 class UsingPublicFolder extends CheckBase implements CheckInterface
 {
+    public $title       = 'UsingPublicFolder';
+    public $description = "Short description about this check";
+    public $fixMe       = "some url";
+    public $moreInfo    = "/checks/UsingPublicFolder";
+    public $severity    = 5;
+
     public function doesItPass() :bool
     {
         $publicFolder = base_path('public');
